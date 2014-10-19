@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SolicitudDeComprasCreateDlg" widgetVar="SolicitudDeComprasCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSolicitudDeComprasTitle}">
+            <h:form id="SolicitudDeComprasCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{solicitudDeComprasController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateSolicitudDeComprasLabel_idSolicitud}" for="idSolicitud" />
+                        <p:inputText id="idSolicitud" value="#{solicitudDeComprasController.selected.idSolicitud}" title="#{bundle.CreateSolicitudDeComprasTitle_idSolicitud}" required="true" requiredMessage="#{bundle.CreateSolicitudDeComprasRequiredMessage_idSolicitud}"/>
+                        <p:outputLabel value="#{bundle.CreateSolicitudDeComprasLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{solicitudDeComprasController.selected.estado}" title="#{bundle.CreateSolicitudDeComprasTitle_estado}" />
+                        <p:outputLabel value="#{bundle.CreateSolicitudDeComprasLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{solicitudDeComprasController.selected.fecha}" title="#{bundle.EditSolicitudDeComprasTitle_fecha}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateSolicitudDeComprasLabel_idProducto}" for="idProducto" />
+                        <p:selectOneMenu id="idProducto" value="#{solicitudDeComprasController.selected.idProducto}" required="true" requiredMessage="#{bundle.EditSolicitudDeComprasRequiredMessage_idProducto}">
+                            <f:selectItems value="#{productosController.itemsAvailableSelectOne}"
+                                           var="idProductoItem"
+                                           itemValue="#{idProductoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{solicitudDeComprasController.create}" value="#{bundle.Save}" update="display,:SolicitudDeComprasListForm:datalist,:growl" oncomplete="handleSubmit(args,'SolicitudDeComprasCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SolicitudDeComprasCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

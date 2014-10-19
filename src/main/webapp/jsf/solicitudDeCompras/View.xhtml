@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SolicitudDeComprasViewDlg" widgetVar="SolicitudDeComprasViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSolicitudDeComprasTitle}">
+            <h:form id="SolicitudDeComprasViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{solicitudDeComprasController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSolicitudDeComprasLabel_idSolicitud}"/>
+                        <h:outputText value="#{solicitudDeComprasController.selected.idSolicitud}" title="#{bundle.ViewSolicitudDeComprasTitle_idSolicitud}"/>
+                        <h:outputText value="#{bundle.ViewSolicitudDeComprasLabel_estado}"/>
+                        <h:outputText value="#{solicitudDeComprasController.selected.estado}" title="#{bundle.ViewSolicitudDeComprasTitle_estado}"/>
+                        <h:outputText value="#{bundle.ViewSolicitudDeComprasLabel_fecha}"/>
+                        <h:outputText value="#{solicitudDeComprasController.selected.fecha}" title="#{bundle.ViewSolicitudDeComprasTitle_fecha}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewSolicitudDeComprasLabel_idProducto}"/>
+                        <h:outputText value="#{solicitudDeComprasController.selected.idProducto}" title="#{bundle.ViewSolicitudDeComprasTitle_idProducto}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SolicitudDeComprasViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

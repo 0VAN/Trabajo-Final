@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FacturasViewDlg" widgetVar="FacturasViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewFacturasTitle}">
+            <h:form id="FacturasViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{facturasController.selected != null}">
+                        <h:outputText value="#{bundle.ViewFacturasLabel_idFacturas}"/>
+                        <h:outputText value="#{facturasController.selected.idFacturas}" title="#{bundle.ViewFacturasTitle_idFacturas}"/>
+                        <h:outputText value="#{bundle.ViewFacturasLabel_fecha}"/>
+                        <h:outputText value="#{facturasController.selected.fecha}" title="#{bundle.ViewFacturasTitle_fecha}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewFacturasLabel_monto}"/>
+                        <h:outputText value="#{facturasController.selected.monto}" title="#{bundle.ViewFacturasTitle_monto}"/>
+                        <h:outputText value="#{bundle.ViewFacturasLabel_idVenta}"/>
+                        <h:outputText value="#{facturasController.selected.idVenta}" title="#{bundle.ViewFacturasTitle_idVenta}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="FacturasViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

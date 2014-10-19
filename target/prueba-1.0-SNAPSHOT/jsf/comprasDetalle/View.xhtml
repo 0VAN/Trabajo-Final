@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ComprasDetalleViewDlg" widgetVar="ComprasDetalleViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewComprasDetalleTitle}">
+            <h:form id="ComprasDetalleViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{comprasDetalleController.selected != null}">
+                        <h:outputText value="#{bundle.ViewComprasDetalleLabel_idDetalle}"/>
+                        <h:outputText value="#{comprasDetalleController.selected.idDetalle}" title="#{bundle.ViewComprasDetalleTitle_idDetalle}"/>
+                        <h:outputText value="#{bundle.ViewComprasDetalleLabel_cantidad}"/>
+                        <h:outputText value="#{comprasDetalleController.selected.cantidad}" title="#{bundle.ViewComprasDetalleTitle_cantidad}"/>
+                        <h:outputText value="#{bundle.ViewComprasDetalleLabel_importe}"/>
+                        <h:outputText value="#{comprasDetalleController.selected.importe}" title="#{bundle.ViewComprasDetalleTitle_importe}"/>
+                        <h:outputText value="#{bundle.ViewComprasDetalleLabel_idProducto}"/>
+                        <h:outputText value="#{comprasDetalleController.selected.idProducto}" title="#{bundle.ViewComprasDetalleTitle_idProducto}"/>
+                        <h:outputText value="#{bundle.ViewComprasDetalleLabel_idCompra}"/>
+                        <h:outputText value="#{comprasDetalleController.selected.idCompra}" title="#{bundle.ViewComprasDetalleTitle_idCompra}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ComprasDetalleViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

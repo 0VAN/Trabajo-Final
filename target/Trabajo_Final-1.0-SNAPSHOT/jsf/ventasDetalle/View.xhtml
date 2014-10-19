@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VentasDetalleViewDlg" widgetVar="VentasDetalleViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewVentasDetalleTitle}">
+            <h:form id="VentasDetalleViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ventasDetalleController.selected != null}">
+                        <h:outputText value="#{bundle.ViewVentasDetalleLabel_idDetalle}"/>
+                        <h:outputText value="#{ventasDetalleController.selected.idDetalle}" title="#{bundle.ViewVentasDetalleTitle_idDetalle}"/>
+                        <h:outputText value="#{bundle.ViewVentasDetalleLabel_cantidad}"/>
+                        <h:outputText value="#{ventasDetalleController.selected.cantidad}" title="#{bundle.ViewVentasDetalleTitle_cantidad}"/>
+                        <h:outputText value="#{bundle.ViewVentasDetalleLabel_importe}"/>
+                        <h:outputText value="#{ventasDetalleController.selected.importe}" title="#{bundle.ViewVentasDetalleTitle_importe}"/>
+                        <h:outputText value="#{bundle.ViewVentasDetalleLabel_idVenta}"/>
+                        <h:outputText value="#{ventasDetalleController.selected.idVenta}" title="#{bundle.ViewVentasDetalleTitle_idVenta}"/>
+                        <h:outputText value="#{bundle.ViewVentasDetalleLabel_idProducto}"/>
+                        <h:outputText value="#{ventasDetalleController.selected.idProducto}" title="#{bundle.ViewVentasDetalleTitle_idProducto}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="VentasDetalleViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

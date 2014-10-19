@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VentasDetalleCreateDlg" widgetVar="VentasDetalleCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateVentasDetalleTitle}">
+            <h:form id="VentasDetalleCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ventasDetalleController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateVentasDetalleLabel_idDetalle}" for="idDetalle" />
+                        <p:inputText id="idDetalle" value="#{ventasDetalleController.selected.idDetalle}" title="#{bundle.CreateVentasDetalleTitle_idDetalle}" required="true" requiredMessage="#{bundle.CreateVentasDetalleRequiredMessage_idDetalle}"/>
+                        <p:outputLabel value="#{bundle.CreateVentasDetalleLabel_cantidad}" for="cantidad" />
+                        <p:inputText id="cantidad" value="#{ventasDetalleController.selected.cantidad}" title="#{bundle.CreateVentasDetalleTitle_cantidad}" required="true" requiredMessage="#{bundle.CreateVentasDetalleRequiredMessage_cantidad}"/>
+                        <p:outputLabel value="#{bundle.CreateVentasDetalleLabel_importe}" for="importe" />
+                        <p:inputText id="importe" value="#{ventasDetalleController.selected.importe}" title="#{bundle.CreateVentasDetalleTitle_importe}" />
+                        <p:outputLabel value="#{bundle.CreateVentasDetalleLabel_idVenta}" for="idVenta" />
+                        <p:selectOneMenu id="idVenta" value="#{ventasDetalleController.selected.idVenta}" required="true" requiredMessage="#{bundle.EditVentasDetalleRequiredMessage_idVenta}">
+                            <f:selectItems value="#{ventasController.itemsAvailableSelectOne}"
+                                           var="idVentaItem"
+                                           itemValue="#{idVentaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateVentasDetalleLabel_idProducto}" for="idProducto" />
+                        <p:selectOneMenu id="idProducto" value="#{ventasDetalleController.selected.idProducto}" required="true" requiredMessage="#{bundle.EditVentasDetalleRequiredMessage_idProducto}">
+                            <f:selectItems value="#{productosController.itemsAvailableSelectOne}"
+                                           var="idProductoItem"
+                                           itemValue="#{idProductoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ventasDetalleController.create}" value="#{bundle.Save}" update="display,:VentasDetalleListForm:datalist,:growl" oncomplete="handleSubmit(args,'VentasDetalleCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="VentasDetalleCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

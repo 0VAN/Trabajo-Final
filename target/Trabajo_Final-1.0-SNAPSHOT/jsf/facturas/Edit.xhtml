@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FacturasEditDlg" widgetVar="FacturasEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditFacturasTitle}">
+            <h:form id="FacturasEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{facturasController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditFacturasLabel_idFacturas}" for="idFacturas" />
+                        <p:inputText id="idFacturas" value="#{facturasController.selected.idFacturas}" title="#{bundle.EditFacturasTitle_idFacturas}" required="true" requiredMessage="#{bundle.EditFacturasRequiredMessage_idFacturas}"/>
+                        <p:outputLabel value="#{bundle.EditFacturasLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{facturasController.selected.fecha}" title="#{bundle.EditFacturasTitle_fecha}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditFacturasLabel_monto}" for="monto" />
+                        <p:inputText id="monto" value="#{facturasController.selected.monto}" title="#{bundle.EditFacturasTitle_monto}" />
+                        <p:outputLabel value="#{bundle.EditFacturasLabel_idVenta}" for="idVenta" />
+                        <p:selectOneMenu id="idVenta" value="#{facturasController.selected.idVenta}" required="true" requiredMessage="#{bundle.EditFacturasRequiredMessage_idVenta}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{ventasController.itemsAvailableSelectOne}"
+                                           var="idVentaItem"
+                                           itemValue="#{idVentaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{facturasController.update}" value="#{bundle.Save}" update="display,:FacturasListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FacturasEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FacturasEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
