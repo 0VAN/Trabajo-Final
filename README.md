@@ -16,7 +16,7 @@ REQUISITOS
 - ejecutar como administrador \jboss-as-7.1.1.Final\bin\add-user.bat y agregar un usuario
 - en el browser ir a localhost:9990 luego seleccionar profile->Available Datasources->add y completar los datos de la siguiente manera
   #name: prueba
-  #jdni: java:jboss\prueba
+  #jdni: java:jboss/prueba
   #driver: seleccionar el mysql-connector
   #connection URL: la url de la base de datos (se puede ver desde el netbeans->services->database->la conexion )
   #username: root
